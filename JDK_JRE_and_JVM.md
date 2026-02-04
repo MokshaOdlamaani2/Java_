@@ -1,8 +1,6 @@
-
-
 ---
 
-##  **JDK, JRE, and JVM — Simple Explanation**
+## **JDK, JRE, and JVM — Simple Explanation**
 
 🔹 **JDK, JRE, and JVM** are parts of Java used at **different stages**.
 🛠️ **JDK** is used by developers to **write and compile** Java programs.
@@ -256,4 +254,3 @@ java HelloWorld
 🌍 Together, they allow Java programs to run on **any operating system**.
 
 ---
-
