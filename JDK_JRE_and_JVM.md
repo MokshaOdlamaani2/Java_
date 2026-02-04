@@ -249,7 +249,39 @@ java HelloWorld
 📜 It converts Java source code into **bytecode**.
 🎒 JRE is used to **run Java applications**.
 📚 JRE provides required libraries and environment.
-⚙️ JVM is part of JRE and **executes bytecode**.
+⚙️ JVM is part of JRE and **executes bytecode**.                                       
+
+
+
+public
+
+Means this method is accessible from anywhere
+
+JVM must be able to access it to start the program
+
+static
+
+Means Java does not need to create an object
+
+JVM can run this method directly
+
+void
+
+Means this method returns nothing
+
+main
+
+This is the starting point of a Java program
+
+JVM looks for main() to begin execution
+
+String[] args
+
+Used to accept command-line input
+
+String[] → array of strings
+
+args → variable name
 🔄 JVM converts bytecode into **machine code**.
 🌍 Together, they allow Java programs to run on **any operating system**.
 
