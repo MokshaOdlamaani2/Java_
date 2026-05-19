@@ -206,4 +206,298 @@ Java does NOT support multiple inheritance with classes.
 * Must be first statement in constructor
 * Cannot be used in static methods directly
 
+
+class Animal {
+
+    String color = "White";
+
+    Animal() {
+        System.out.println("Animal Constructor Called");
+    }
+
+    void sound() {
+        System.out.println("Animal makes sound");
+    }
+}
+
+// extends keyword used here
+class Dog extends Animal {
+
+    String color = "Black";
+
+    Dog() {
+
+        // super() calls parent constructor
+        super();
+
+        System.out.println("Dog Constructor Called");
+    }
+
+    void display() {
+
+        // super.color -> parent variable
+        System.out.println("Parent Color: " + super.color);
+
+        // child variable
+        System.out.println("Child Color: " + color);
+
+        // super.sound() -> parent method
+        super.sound();
+    }
+}
+
+class Main {
+
+    public static void main(String[] args) {
+
+        Dog d = new Dog();
+
+        d.display();
+    }
+}
 ---
+
+
+# 1. Inheritance
+
+### Meaning
+
+One class inherits another class.
+
+```text id="r4u5ga"
+Dog is an Animal
+```
+
+### Code
+
+```java id="gvjlwm"
+class Animal {
+
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+
+        Dog d = new Dog();
+
+        d.eat();
+        d.bark();
+    }
+}
+```
+
+---
+
+# 2. Inheritance + Association
+
+### Meaning
+
+* One class inherits another
+* AND uses another class object
+
+```text id="j1k4xp"
+Dog is an Animal
+Dog uses Collar
+```
+
+### Code
+
+```java id="d0b8m7"
+class Collar {
+
+    String color = "Red";
+}
+
+class Animal {
+
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal {
+
+    Collar c = new Collar(); // Association
+
+    void show() {
+        System.out.println("Collar Color: " + c.color);
+    }
+}
+
+class Main {
+
+    public static void main(String[] args) {
+
+        Dog d = new Dog();
+
+        d.eat();
+        d.show();
+    }
+}
+```
+
+---
+
+# 3. Inheritance + Aggregation
+
+### Meaning
+
+* One class inherits another
+* AND contains another independent object
+
+```text id="x5qbcl"
+Manager is an Employee
+Manager has Department
+```
+
+### Code
+
+```java id="jlwm1f"
+class Department {
+
+    String deptName;
+
+    Department(String deptName) {
+        this.deptName = deptName;
+    }
+}
+
+class Employee {
+
+    void work() {
+        System.out.println("Employee works");
+    }
+}
+
+class Manager extends Employee {
+
+    Department d; // Aggregation
+
+    Manager(Department d) {
+        this.d = d;
+    }
+
+    void display() {
+        System.out.println("Department: " + d.deptName);
+    }
+}
+
+class Main {
+
+    public static void main(String[] args) {
+
+        Department d1 = new Department("IT");
+
+        Manager m = new Manager(d1);
+
+        m.work();
+        m.display();
+    }
+}
+```
+
+✔ Department can exist independently.
+
+---
+
+# 4. Inheritance + Association + Aggregation
+
+### Meaning
+
+Uses all three together.
+
+```text id="d9azjx"
+Developer is an Employee
+Developer uses Laptop
+Developer has Department
+```
+
+---
+
+### Code
+
+```java id="9f8zrz"
+class Laptop {
+
+    String brand = "Dell";
+}
+
+class Department {
+
+    String deptName;
+
+    Department(String deptName) {
+        this.deptName = deptName;
+    }
+}
+
+class Employee {
+
+    void work() {
+        System.out.println("Employee working");
+    }
+}
+
+class Developer extends Employee {
+
+    Laptop l = new Laptop(); // Association
+
+    Department d; // Aggregation
+
+    Developer(Department d) {
+        this.d = d;
+    }
+
+    void display() {
+
+        System.out.println("Laptop: " + l.brand);
+
+        System.out.println("Department: " + d.deptName);
+    }
+}
+
+class Main {
+
+    public static void main(String[] args) {
+
+        Department d1 = new Department("Development");
+
+        Developer dev = new Developer(d1);
+
+        dev.work();
+
+        dev.display();
+    }
+}
+```
+
+---
+
+# Easy Understanding Table
+
+| Concept     | Meaning |
+| ----------- | ------- |
+| Inheritance | IS-A    |
+| Association | USES-A  |
+| Aggregation | HAS-A   |
+
+---
+
+# Real-Life Combined Example
+
+```text id="0r8cl7"
+Developer IS-A Employee
+Developer USES-A Laptop
+Developer HAS-A Department
+```
+
