@@ -499,6 +499,189 @@ class Main {
 }
 ```
 
-Important logic: Add the previous two numbers to get the next number, then update `a` and `b`.
+## 1. Sum of digits
 
-My suggestion: Focus on understanding the one important logic line after each program. These are the main concepts you should remember when writing the code yourself.
+Example: 122 → 1 + 2 + 2 = 5
+
+java
+
+```java
+
+class Main {
+    public static void main(String[] args) {
+        int num = 122;
+        int sums = 0;
+
+        while (num != 0) {
+            int digits = num % 10;
+            sums = sums + digits;
+            num = num / 10;
+        }
+
+        System.out.println("Sum of digits: " + sums);
+    }
+}
+```
+
+Output:
+
+text
+
+```text
+Sum of digits: 5
+```
+
+## 2. GCD of two numbers
+
+GCD means the greatest common divisor of two numbers.
+
+Example: 12 and 18 → GCD = 6
+
+java
+
+```java
+
+class Main {
+    public static void main(String[] args) {
+        int a = 12;
+        int b = 18;
+        int gcd = 1;
+
+        int i = 1;
+
+        while (i <= a && i <= b) {
+            if (a % i == 0 && b % i == 0) {
+                gcd = i;
+            }
+            i++;
+        }
+
+        System.out.println("GCD: " + gcd);
+    }
+}
+```
+
+Output:
+
+text
+
+```text
+GCD: 6
+```
+
+## 3. LCM of two numbers
+
+LCM means the least common multiple of two numbers.
+
+Example: 12 and 18 → LCM = 36
+
+java
+
+```java
+
+class Main {
+    public static void main(String[] args) {
+        int a = 12;
+        int b = 18;
+
+        int lcm = (a > b) ? a : b;
+
+        while (true) {
+            if (lcm % a == 0 && lcm % b == 0) {
+                break;
+            }
+            lcm++;
+        }
+
+        System.out.println("LCM: " + lcm);
+    }
+}
+```
+
+Output:
+
+text
+
+```text
+LCM: 36
+```
+
+Learn more
+
+## 4. Perfect number
+
+A perfect number is a number whose sum of proper divisors equals the number itself.
+
+Example: 6 → 1 + 2 + 3 = 6
+
+java
+
+```java
+
+class Main {
+    public static void main(String[] args) {
+        int num = 6;
+        int sum = 0;
+        int i = 1;
+
+        while (i < num) {
+            if (num % i == 0) {
+                sum = sum + i;
+            }
+            i++;
+        }
+
+        if (sum == num) {
+            System.out.println("Perfect number");
+        } else {
+            System.out.println("Not a perfect number");
+        }
+    }
+}
+```
+
+Output:
+
+text
+
+```text
+Perfect number
+```
+
+## 5. Find all divisors of a number
+
+Example: 12 → 1, 2, 3, 4, 6, 12
+
+java
+
+```java
+
+class Main {
+    public static void main(String[] args) {
+        int num = 12;
+        int i = 1;
+
+        System.out.println("Divisors are:");
+
+        while (i <= num) {
+            if (num % i == 0) {
+                System.out.println(i);
+            }
+            i++;
+        }
+    }
+}
+```
+
+Output:
+
+text
+
+```text
+Divisors are:
+1
+2
+3
+4
+6
+12
