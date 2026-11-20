@@ -685,3 +685,385 @@ Divisors are:
 4
 6
 12
+
+
+## 1. First understand nested loops
+
+A nested loop means one `for` loop inside another `for` loop.
+
+java
+
+```java
+for (int i = 1; i <= 3; i++) {
+
+    for (int j = 1; j <= 4; j++) {
+        System.out.print("* ");
+    }
+
+    System.out.println();
+}
+```
+
+Output:
+
+text
+
+```text
+* * * *
+* * * *
+* * * *
+```
+
+Understand the two loops:
+
+- Outer loop (`i`) controls the number of rows.
+- Inner loop (`j`) controls the number of columns (stars).
+- `System.out.print()` prints on the same line.
+- `System.out.println()` moves to the next line.
+
+Remember this simple rule
+
+Outer loopNumber of rows
+
+Inner loopNumber of columns
+
+# 2. Different star patterns
+
+## Pattern 1: Right-angle star triangle
+
+Output:
+
+text
+
+```text
+*
+* *
+* * *
+* * * *
+* * * * *
+```
+
+Logic:
+
+- Row 1 → 1 star
+- Row 2 → 2 stars
+- Row 3 → 3 stars
+- Row 4 → 4 stars
+- Row 5 → 5 stars
+
+The number of stars is equal to the row number (`i`).
+
+Java code:
+
+java
+
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        for (int i = 1; i <= 5; i++) {
+
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+```
+
+Important logic: `j <= i`
+
+This means the inner loop runs as many times as the current row number.
+
+## Pattern 2: Inverted star triangle
+
+Output:
+
+text
+
+```text
+* * * * *
+* * * *
+* * *
+* *
+*
+```
+
+Logic:
+
+- Row 1 → 5 stars
+- Row 2 → 4 stars
+- Row 3 → 3 stars
+- Row 4 → 2 stars
+- Row 5 → 1 star
+
+Java code:
+
+java
+
+```java
+for (int i = 5; i >= 1; i--) {
+
+    for (int j = 1; j <= i; j++) {
+        System.out.print("* ");
+    }
+
+    System.out.println();
+}
+```
+
+Notice the difference: the outer loop decreases from 5 to 1.
+
+# 3. Number triangle
+
+Output:
+
+text
+
+```text
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+```
+
+Logic:
+
+Here, instead of printing `*`, we print the value of `j`.
+
+Java code:
+
+java
+
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        for (int i = 1; i <= 5; i++) {
+
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j + " ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+```
+
+The key change is:
+
+java
+
+```java
+System.out.print(j + " ");
+```
+
+Earlier, we printed `"* "`. Now we print `j`.
+
+# 4. Pyramid pattern
+
+Output:
+
+text
+
+```text
+        *
+      * *
+    * * *
+  * * * *
+* * * * *
+```
+
+Logic:
+
+A pyramid needs two things:
+
+1. Spaces before the stars.
+2. Stars after the spaces.
+
+For 5 rows:
+
+| Row | Spaces | Stars |
+| --- | --- | --- |
+| 1 | 4 | 1 |
+| 2 | 3 | 2 |
+| 3 | 2 | 3 |
+| 4 | 1 | 4 |
+| 5 | 0 | 5 |
+
+Java code:
+
+java
+
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        for (int i = 1; i <= 5; i++) {
+
+            // Print spaces
+            for (int j = 1; j <= 5 - i; j++) {
+                System.out.print("  ");
+            }
+
+            // Print stars
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+```
+
+Remember:
+
+- Spaces = `n - i`
+- Stars = `i`
+
+Where `n` is the total number of rows.
+
+# 5. Floyd's triangle
+
+Output:
+
+text
+
+```text
+1
+2 3
+4 5 6
+7 8 9 10
+11 12 13 14 15
+```
+
+Logic:
+
+Here, we need one extra variable called `num`.
+
+- First row prints 1 number.
+- Second row prints 2 numbers.
+- Third row prints 3 numbers.
+- Numbers continue increasing without restarting.
+
+Java code:
+
+java
+
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        int num = 1;
+
+        for (int i = 1; i <= 5; i++) {
+
+            for (int j = 1; j <= i; j++) {
+
+                System.out.print(num + " ");
+                num++;
+            }
+
+            System.out.println();
+        }
+    }
+}
+```
+
+Understand these two statements:
+
+java
+
+```java
+System.out.print(num + " ");
+num++;
+```
+
+- First statement prints the current number.
+- Second statement increases the number by 1.
+
+For example:
+
+| Row | Numbers printed |
+| --- | --- |
+| 1 | 1 |
+| 2 | 2, 3 |
+| 3 | 4, 5, 6 |
+| 4 | 7, 8, 9, 10 |
+
+# 6. Hollow square pattern
+
+Output:
+
+text
+
+```text
+* * * * *
+*       *
+*       *
+*       *
+* * * * *
+```
+
+This pattern is slightly different because we print stars only on the boundaries.
+
+Logic:
+
+We need to check four conditions:
+
+- First row → print stars.
+- Last row → print stars.
+- First column → print stars.
+- Last column → print stars.
+- Otherwise → print spaces.
+
+Java code:
+
+java
+
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n; j++) {
+
+                if (i == 1 || i == n ||
+                    j == 1 || j == n) {
+
+                    System.out.print("* ");
+                } else {
+                    System.out.print("  ");
+                }
+            }
+
+            System.out.println();
+        }
+    }
+}
+```
+
+Most important condition:
+
+java
+
+```java
+if (i == 1 || i == n || j == 1 || j == n)
+```
+
+Here:
+
+- `i == 1` → first row.
+- `i == n` → last row.
+- `j == 1` → first column.
+- `j == n` → last column.
+- `||` means OR.
+
